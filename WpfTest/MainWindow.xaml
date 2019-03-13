@@ -11,6 +11,10 @@
             <ColumnDefinition Width="43*"/>
             <ColumnDefinition Width="439*"/>
         </Grid.ColumnDefinitions>
+        <Button x:Name="AddButton" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="186,31,0,0" VerticalAlignment="Top" Width="100" Height="23"/>
+        <ListBox x:Name="NumbersListBox" Grid.Column="1" HorizontalAlignment="Left" Height="139" Margin="37,72,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PutNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="37,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="RemoveButton" Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="325,31,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
 
     </Grid>
 </Window>
