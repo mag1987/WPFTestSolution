@@ -91,6 +91,10 @@ namespace WpfTest
                 });
             }
         }
+        public void TestMethod()
+        {
+            MessageBox.Show("Hallo");
+        }
           
     }
 
