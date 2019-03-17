@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:WpfTest"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <!-- <local:TestVM x:Key="TestVM" /> обязательно -->
+        <local:TestVM x:Key="TestVM" />
     </Application.Resources>
 </Application>
