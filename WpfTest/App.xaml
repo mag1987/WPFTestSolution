@@ -5,6 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <!-- <local:TestVM x:Key="TestVM" /> обязательно -->
-        <local:TestVM x:Key="TestVM" />
+        <local:TestVM x:Key="TestVM"/>
+        <!--local:TestVM1 x:Key="TestVM1"/-->
     </Application.Resources>
 </Application>
