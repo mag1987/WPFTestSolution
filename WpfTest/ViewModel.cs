@@ -42,7 +42,46 @@ namespace WpfTest
                 if (i.HasValue) _model.RemoveValue(i.Value);
             });
         }
+        // from here testing DataGrid
+
+        /*
+        static List<string> _listOne = new List<string>() {"1", "2", "3"};
+        static List<string> _listTwo = new List<string>() { " one", "two", "three", "four", "five" };
+        static List<string> _listThree = new List<string>() { "ein", "zwei", "drei", "vier" };
+
+        static List<List<string>> testCollection = new List<List<string>>() {_listOne, _listTwo, _listThree };
+        */    
+        static List<ChemShift> testCollection = new List<ChemShift>()
+        {
+            new ChemShift("1.0","ppm","sd" ),
+            new ChemShift("2.0","ppm","rer" ),
+            new ChemShift("3.0","ppm","wewe" )
+        };
+
+        ObservableCollection<ChemShift> _testGridSource = new ObservableCollection<ChemShift>(testCollection);
+        public ObservableCollection<ChemShift> testGridSource => _testGridSource;
         
+        // end testing DataGrid
+        
+    }
+    public class ChemShift
+    {
+        string _value;
+        string _unit;
+        string _assignment;
+        List<string> _additionalParameters;
+        public ChemShift(string value, string unit, string assignment)
+        {
+            Value = value;
+            Unit = unit;
+            Assignment = assignment;
+            AdditionalParameters = new List<string>();
+        }
+        public string Value { get; set; }
+        public string Unit { get; set; }
+        public string Assignment { get; set; }
+        public List<string> AdditionalParameters { get; set; }
+
     }
 
 }
