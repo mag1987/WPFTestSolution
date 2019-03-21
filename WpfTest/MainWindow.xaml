@@ -53,15 +53,26 @@
                  VerticalAlignment="Top" 
                  Width="120"
                  Text="{Binding Sum, Mode=OneWay}"/>
-        <DataGrid Grid.ColumnSpan="2"
+        <DataGrid x:Name="ShiftsDataGrid" Grid.ColumnSpan="2"
                   HorizontalAlignment="Left" 
-                  Height="182" 
+                  Height="115" 
                   Margin="186,72,0,0"
                   VerticalAlignment="Top"
                   Width="407"
                   ItemsSource="{Binding testGridSource}"
                   >
-            
+
         </DataGrid>
+        <Button x:Name="AddNewColumnButton" 
+                Grid.ColumnSpan="2" 
+                Content="Add column" 
+                HorizontalAlignment="Left"
+                Margin="434,31,0,0" 
+                VerticalAlignment="Top"
+                Width="75"
+                Height="23"
+                Command="{Binding AddNewColumn}"
+                CommandParameter="{Binding ElementName=ShiftsDataGrid, Path=Name}"/>
+
     </Grid>
 </Window>

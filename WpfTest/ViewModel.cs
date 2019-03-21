@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Prism.Commands;
 using Prism.Mvvm;
 using System.Windows;
+using System.Windows.Controls;
 using System.Collections.ObjectModel;
 
 
@@ -29,6 +30,8 @@ namespace WpfTest
         public DelegateCommand<int?> RemoveCommand { get; }
         public int Sum => _model.Sum;
         public ReadOnlyObservableCollection<int> MyValues => _model.MyPublicValues;
+
+        public DelegateCommand<string> AddNewColumn { get; }
         public TestVM()
         {
             //таким нехитрым способом мы пробрасываем изменившиеся свойства модели во View
@@ -40,6 +43,13 @@ namespace WpfTest
             });
             RemoveCommand = new DelegateCommand<int?>(i => {
                 if (i.HasValue) _model.RemoveValue(i.Value);
+            });
+            AddNewColumn = new DelegateCommand<string>(str => {
+                DataGridTextColumn cnew = new DataGridTextColumn();
+                cnew.Header = "Some column";
+                cnew.Width = 50;
+
+                //this.Columns.Add(cnew);
             });
         }
         // from here testing DataGrid
@@ -70,6 +80,7 @@ namespace WpfTest
         string _unit;
         string _assignment;
         List<string> _additionalParameters;
+        public ChemShift(string value, string assignment) : this(value, "ppm", assignment) { }
         public ChemShift(string value, string unit, string assignment)
         {
             Value = value;
