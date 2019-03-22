@@ -30,8 +30,11 @@ namespace WpfTest
         public DelegateCommand<int?> RemoveCommand { get; }
         public int Sum => _model.Sum;
         public ReadOnlyObservableCollection<int> MyValues => _model.MyPublicValues;
+        public ReadOnlyObservableCollection<ChemShift> testGridSource => _model.ChemShifts;
 
-        public DelegateCommand<string> AddNewColumn { get; }
+        public DelegateCommand<DataGrid> AddNewColumn { get; }
+        public DelegateCommand<DataGrid> DeleteColumn { get; }
+        public DelegateCommand<DataGrid> GetData { get; }
         public TestVM()
         {
             //таким нехитрым способом мы пробрасываем изменившиеся свойства модели во View
@@ -44,55 +47,25 @@ namespace WpfTest
             RemoveCommand = new DelegateCommand<int?>(i => {
                 if (i.HasValue) _model.RemoveValue(i.Value);
             });
-            AddNewColumn = new DelegateCommand<string>(str => {
+            AddNewColumn = new DelegateCommand<DataGrid>(datagrid => {
                 DataGridTextColumn cnew = new DataGridTextColumn();
                 cnew.Header = "Some column";
                 cnew.Width = 50;
-
-                //this.Columns.Add(cnew);
+                datagrid.Columns.Add(cnew);
+            });
+            DeleteColumn = new DelegateCommand<DataGrid>(datagrid=> {
+                if (datagrid.SelectedCells.Count == 1)
+                    datagrid.Columns.Remove(datagrid.SelectedCells.First().Column);
+            });
+            GetData = new DelegateCommand<DataGrid>(datagrid =>{
+                datagrid.Columns.Add(
+                    new DataGridTextColumn
+                    {
+                        Header = "New column 1",
+                        Width = 50
+                    });
+               
             });
         }
-        // from here testing DataGrid
-
-        /*
-        static List<string> _listOne = new List<string>() {"1", "2", "3"};
-        static List<string> _listTwo = new List<string>() { " one", "two", "three", "four", "five" };
-        static List<string> _listThree = new List<string>() { "ein", "zwei", "drei", "vier" };
-
-        static List<List<string>> testCollection = new List<List<string>>() {_listOne, _listTwo, _listThree };
-        */    
-        static List<ChemShift> testCollection = new List<ChemShift>()
-        {
-            new ChemShift("1.0","ppm","sd" ),
-            new ChemShift("2.0","ppm","rer" ),
-            new ChemShift("3.0","ppm","wewe" )
-        };
-
-        ObservableCollection<ChemShift> _testGridSource = new ObservableCollection<ChemShift>(testCollection);
-        public ObservableCollection<ChemShift> testGridSource => _testGridSource;
-        
-        // end testing DataGrid
-        
     }
-    public class ChemShift
-    {
-        string _value;
-        string _unit;
-        string _assignment;
-        List<string> _additionalParameters;
-        public ChemShift(string value, string assignment) : this(value, "ppm", assignment) { }
-        public ChemShift(string value, string unit, string assignment)
-        {
-            Value = value;
-            Unit = unit;
-            Assignment = assignment;
-            AdditionalParameters = new List<string>();
-        }
-        public string Value { get; set; }
-        public string Unit { get; set; }
-        public string Assignment { get; set; }
-        public List<string> AdditionalParameters { get; set; }
-
-    }
-
 }

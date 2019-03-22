@@ -20,7 +20,7 @@
                 HorizontalAlignment="Left"
                 Margin="186,31,0,0"
                 VerticalAlignment="Top" 
-                Width="100" Height="23"
+                Width="48" Height="23"
                 Command="{Binding AddCommand}"
                 CommandParameter="{Binding ElementName=PutNumberTextBox, Path=Text}"/>
         <ListBox x:Name="NumbersListBox" 
@@ -40,7 +40,7 @@
                 Content="Remove" 
                 Grid.Column="1" 
                 HorizontalAlignment="Left"
-                Margin="325,31,0,0" 
+                Margin="248,31,0,0" 
                 VerticalAlignment="Top" 
                 Width="75" Height="23"
                 Command="{Binding RemoveCommand}"
@@ -58,9 +58,9 @@
                   Height="115" 
                   Margin="186,72,0,0"
                   VerticalAlignment="Top"
-                  Width="407"
+                  Width="430"
                   ItemsSource="{Binding testGridSource}"
-                  >
+                  SelectionUnit="Cell">
 
         </DataGrid>
         <Button x:Name="AddNewColumnButton" 
@@ -72,7 +72,26 @@
                 Width="75"
                 Height="23"
                 Command="{Binding AddNewColumn}"
-                CommandParameter="{Binding ElementName=ShiftsDataGrid, Path=Name}"/>
+                CommandParameter="{Binding ElementName=ShiftsDataGrid}"/>
+        <Button x:Name="DeleteColumnButton"
+                Grid.ColumnSpan="2"
+                Content="Delete column" 
+                HorizontalAlignment="Left"
+                Margin="541,31,0,0" 
+                VerticalAlignment="Top" 
+                Width="75"
+                Command="{Binding DeleteColumn}"
+                CommandParameter="{Binding ElementName=ShiftsDataGrid}"/>
+        <Button x:Name="GetDataButton" 
+                Grid.ColumnSpan="2" 
+                Content="Get data" 
+                HorizontalAlignment="Left" 
+                Margin="342,34,0,0" 
+                VerticalAlignment="Top" 
+                Width="75"
+                Command="{Binding GetData}"
+                CommandParameter="{Binding ElementName=ShiftsDataGrid}"
+                />
 
     </Grid>
 </Window>

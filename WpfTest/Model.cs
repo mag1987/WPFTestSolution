@@ -22,6 +22,13 @@ namespace WpfTest
         public Model()
         {
             MyPublicValues = new ReadOnlyObservableCollection<int>(_myValues);
+            _chemShifts = new ObservableCollection<ChemShift>()
+            {
+                new ChemShift(1.2,"ppm","sd" ),
+                new ChemShift(2.0,"ppm","rer" ),
+                new ChemShift(3.0,"ppm","wewe" )
+            };
+            ChemShifts = new ReadOnlyObservableCollection<ChemShift>(_chemShifts);
         }
         //добавление в коллекцию числа и уведомление об изменении суммы
         public void AddValue(int value)
@@ -37,6 +44,21 @@ namespace WpfTest
             RaisePropertyChanged("Sum");
         }
         public int Sum => MyPublicValues.Sum(); //сумма
+        private readonly ObservableCollection<ChemShift> _chemShifts = new ObservableCollection<ChemShift>();
+        public readonly ReadOnlyObservableCollection<ChemShift> ChemShifts;
+    }
+    public class ChemShift
+    {
+        public double Value { get; set; }
+        public string Unit { get; set; }
+        public string Assignment { get; set; }
 
+        public ChemShift(double value, string assignment) : this(value, "ppm", assignment) { }
+        public ChemShift(double value, string unit, string assignment)
+        {
+            Value = value;
+            Unit = unit;
+            Assignment = assignment;
+        }
     }
 }
