@@ -32,6 +32,10 @@ namespace WpfTest
         public ReadOnlyObservableCollection<int> MyValues => _model.MyPublicValues;
         public ReadOnlyObservableCollection<ChemShift> testGridSource => _model.ChemShifts;
 
+        public void testGridSource1()
+        {
+        }
+
         public DelegateCommand<DataGrid> AddNewColumn { get; }
         public DelegateCommand<DataGrid> DeleteColumn { get; }
         public DelegateCommand<DataGrid> GetData { get; }
