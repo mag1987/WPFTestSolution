@@ -15,8 +15,6 @@ namespace WpfTest
 {
     public class Model : BindableBase
     {
-        public void TestMethod() { }
-
         private readonly ObservableCollection<int> _myValues = new ObservableCollection<int>();
         public readonly ReadOnlyObservableCollection<int> MyPublicValues;
         public Model()
@@ -29,7 +27,12 @@ namespace WpfTest
                 new ChemShift(3.0,"ppm","wewe" )
             };
             ChemShifts = new ReadOnlyObservableCollection<ChemShift>(_chemShifts);
-            ChemShiftsPUblic = _chemShifts;
+
+            ChemShiftsPublic = new ChemShifts();
+            ChemShiftsPublic.AddProperty( new ChemShiftProperty("shift", 2.3));
+            ChemShiftsPublic.AddProperty(new ChemShiftProperty("beta", 3));
+            ChemShiftsPublic.AddShift();
+            ChemShiftsPublic.AddShift();
         }
         //добавление в коллекцию числа и уведомление об изменении суммы
         public void AddValue(int value)
@@ -47,7 +50,7 @@ namespace WpfTest
         public int Sum => MyPublicValues.Sum(); //сумма
         private readonly ObservableCollection<ChemShift> _chemShifts = new ObservableCollection<ChemShift>();
         public readonly ReadOnlyObservableCollection<ChemShift> ChemShifts;
-        public ObservableCollection<ChemShift> ChemShiftsPUblic { get; set; }
+        public ChemShifts ChemShiftsPublic { get; set; }
     }
     public class ChemShift
     {
@@ -91,7 +94,7 @@ namespace WpfTest
             Properties = new List<ChemShiftProperty>(properties);
         }
     }
-    public class ChemShifts
+    public class ChemShifts : ObservableCollection<ChemShift1>
     {
         private List<ChemShift1> _shifts { get; set; }
         private List<ChemShiftProperty> _shiftProperties { get; set; }
@@ -134,17 +137,6 @@ namespace WpfTest
         }
 
     }
-    public class NewClass : ObservableCollection<ChemShift1>
-    {
-        
-        NewClass()
-        {
-            Add(new ChemShift1());
-            
-        }
-        public void method()
-        {
-        }
-    }
+    
     
 }

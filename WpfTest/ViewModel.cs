@@ -8,6 +8,7 @@ using Prism.Mvvm;
 using System.Windows;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
+using System.Windows.Data;
 
 
 namespace WpfTest
@@ -32,13 +33,19 @@ namespace WpfTest
         public ReadOnlyObservableCollection<int> MyValues => _model.MyPublicValues;
         public ReadOnlyObservableCollection<ChemShift> testGridSource => _model.ChemShifts;
 
-        public void testGridSource1()
-        {
-        }
 
         public DelegateCommand<DataGrid> AddNewColumn { get; }
         public DelegateCommand<DataGrid> DeleteColumn { get; }
         public DelegateCommand<DataGrid> GetData { get; }
+
+        public Binding binding { get; set; }
+        public void testMethod()
+        {
+            binding = new Binding();
+            binding.Source = _model.ChemShiftsPublic;
+            
+        }
+        
         public TestVM()
         {
             //таким нехитрым способом мы пробрасываем изменившиеся свойства модели во View
@@ -68,7 +75,7 @@ namespace WpfTest
                         Header = "New column 1",
                         Width = 50
                     });
-               
+                
             });
         }
     }

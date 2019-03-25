@@ -92,6 +92,12 @@
                 Command="{Binding GetData}"
                 CommandParameter="{Binding ElementName=ShiftsDataGrid}"
                 />
+        <DataGrid x:Name="testDataGrid"
+                  Grid.ColumnSpan="2" 
+                  HorizontalAlignment="Left" 
+                  Height="120" Margin="186,213,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="430"/>
 
     </Grid>
 </Window>
