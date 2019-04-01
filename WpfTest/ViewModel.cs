@@ -32,6 +32,7 @@ namespace WpfTest
         public int Sum => _model.Sum;
         public ReadOnlyObservableCollection<int> MyValues => _model.MyPublicValues;
         public ReadOnlyObservableCollection<ChemShift> testGridSource => _model.ChemShifts;
+        public ChemShifts ChemShiftsPublicVM => _model.ChemShiftsPublic;
 
 
         public DelegateCommand<DataGrid> AddNewColumn { get; }
