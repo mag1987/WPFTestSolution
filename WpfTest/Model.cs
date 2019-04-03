@@ -107,12 +107,6 @@ namespace WpfTest
         }
         public void AddProperty(ChemShiftProperty newProperty)
         {
-            /*
-            for (int i =0; i<Shifts.Count; i++)
-            {
-                Shifts[i].Properties.Add(newProperty);
-            }
-            */
             _shiftProperties.Add(newProperty);
             foreach (var shift in _shifts)
             {
