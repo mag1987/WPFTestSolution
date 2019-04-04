@@ -16,6 +16,8 @@ namespace WpfTest
     public class TestVM : BindableBase
     {
         readonly Model _model = new Model();
+
+
         //public DelegateCommand<string> AddCommand { get; }
         public ObservableCollection<ChemShift> testGridSource => _model.ChemShifts;
 
